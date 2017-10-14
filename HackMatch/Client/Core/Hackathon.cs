@@ -50,41 +50,53 @@ namespace HackMatch
         {
             List<Hackathon> hacks = new List<Hackathon>();
             Hackathon current = new Hackathon(); ;
-
-            XmlReader reader = assets.OpenXmlResourceParser(Constants.HACKATHONS_XML);
-            while (reader.MoveToNextAttribute())
+            try
             {
-                switch (reader.Name)
+                XmlReader reader = assets.OpenXmlResourceParser("Hackathons.xml");
+                while (reader.MoveToNextAttribute())
                 {
-                    case "hackathon":
-                        current = new Hackathon();
-                        break;
-                    case "name":
-                        current.Name = reader.Value;
-                        break;
-                    case "start":
-                        current.StartDate = DateTime.Parse(reader.Value);
-                        break;
-                    case "end":
-                        current.EndDate = DateTime.Parse(reader.Value);
-                        break;
-                    case "loc":
-                        current.Location = reader.Value;
-                        break;
-                    case "desc":
-                        current.Description = reader.Value;
-                        break;
-                    case "img":
-                        Stream bmp = assets.Open(reader.Value);
-                        current.Background = BitmapFactory.DecodeStream(bmp);
-                        break;
-                    default:
-                        hacks.Add(current);
-                        break;
+                    switch (reader.Name)
+                    {
+                        case "hackathon":
+                            current = new Hackathon();
+                            break;
+                        case "name":
+                            current.Name = reader.Value;
+                            break;
+                        case "start":
+                            current.StartDate = DateTime.Parse(reader.Value);
+                            break;
+                        case "end":
+                            current.EndDate = DateTime.Parse(reader.Value);
+                            break;
+                        case "loc":
+                            current.Location = reader.Value;
+                            break;
+                        case "desc":
+                            current.Description = reader.Value;
+                            break;
+                        case "img":
+                            Stream bmp = assets.Open(reader.Value);
+                            current.Background = BitmapFactory.DecodeStream(bmp);
+                            break;
+                        default:
+                            hacks.Add(current);
+                            break;
+                    }
                 }
             }
+            catch (Java.IO.IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
 
             return hacks;
+        }
+
+        public override string ToString()
+        {
+            return $"Name: {Name}\n From: {StartDate} till {EndDate}\n In: {Location}\n Description: {Description}";
         }
     }
 }
