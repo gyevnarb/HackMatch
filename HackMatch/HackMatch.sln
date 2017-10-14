@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackMatch", "HackMatch.csproj", "{AA5CC406-BF16-4BD1-B089-1469D1471309}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackMatchServer", "HackMatchServer\HackMatchServer.csproj", "{F2D445E0-6108-43DA-BD4F-85EA9B20A3D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackMatchServer", "..\HackMatchServer\HackMatchServer.csproj", "{04D79BAE-5217-4B1C-9648-B1D16841321C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,10 @@ Global
 		{AA5CC406-BF16-4BD1-B089-1469D1471309}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA5CC406-BF16-4BD1-B089-1469D1471309}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AA5CC406-BF16-4BD1-B089-1469D1471309}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{F2D445E0-6108-43DA-BD4F-85EA9B20A3D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2D445E0-6108-43DA-BD4F-85EA9B20A3D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2D445E0-6108-43DA-BD4F-85EA9B20A3D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2D445E0-6108-43DA-BD4F-85EA9B20A3D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04D79BAE-5217-4B1C-9648-B1D16841321C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04D79BAE-5217-4B1C-9648-B1D16841321C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04D79BAE-5217-4B1C-9648-B1D16841321C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04D79BAE-5217-4B1C-9648-B1D16841321C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
