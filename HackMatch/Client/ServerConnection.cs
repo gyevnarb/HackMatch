@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
+using System.Text;
+using System.Runtime.Serialization.Json;
 
 namespace HackMatch
 {
@@ -22,46 +24,51 @@ namespace HackMatch
 		/// <summary>
 		/// Implements the CreateProfile function as described in IServerCommunicator.
 		/// </summary>
-		public void IServerCommunicator.CreateProfile(User userdata)
+		void IServerCommunicator.CreateProfile(User userdata)
 		{
-			//	Need serialization before writing this part.
-			byte[] data = "CREATE ";
+			byte[] data = Encoding.UTF8.GetBytes("CREATE ");
 			NetworkStream create = connection.GetStream();
 			create.Write(data, 0, data.Length);
+			DataContractJsonSerializer json = new DataContractJsonSerializer(userdata.GetType());
+			json.WriteObject(create, userdata);
 		}
 
 		/// <summary>
 		/// Implements the EditProfile function as described in IServerCommunicator.
 		/// </summary>
-		public void IServerCommunicator.EditProfile(User userdata)
+		void IServerCommunicator.EditProfile(User userdata)
 		{
 			//	Need serialization before writing this part.
-			byte[] data = "EDIT ";
+			byte[] data = Encoding.UTF8.GetBytes("EDIT ");
 			NetworkStream edit = connection.GetStream();
 			edit.Write(data, 0, data.Length);
+			DataContractJsonSerializer json = new DataContractJsonSerializer(userdata.GetType());
+			json.WriteObject(edit, userdata);
 		}
 
 		/// <summary>
 		/// Implements the LoadProfile function as described in IServerCommunicator.
 		/// </summary>
-		public User IServerCommunicator.LoadProfile(string userid)
+		User IServerCommunicator.LoadProfile(string userid)
 		{
-			byte[] data = "LOAD " + userid;
+			byte[] data = Encoding.UTF8.GetBytes("LOAD " + userid);
 			NetworkStream load = connection.GetStream();
 			load.Write(data, 0, data.Length);
-
-			//	Deserialize from load stream here.
-			//	return profile;
+			DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
+			return (User)json.ReadObject(load);
 		}
 
 		/// <summary>
 		/// Implements the CalculateScore function as described in IServerCommunicator.
 		/// </summary>
-		public int IServerCommunicator.CalculateScore(string userid1, string userid2)
+		Int32 IServerCommunicator.CalculateScore(string userid1, string userid2)
 		{
-			byte[] data = "SCORE " + userid1 + ' ' + userid2;
+			byte[] data = Encoding.UTF8.GetBytes("SCORE " + userid1 + ' ' + userid2);
 			NetworkStream score = connection.GetStream();
-			score.Write(data);
+			score.Write(data, 0, data.Length);
+			byte[] result = new byte[4];
+			score.Read(result, 0, 4);
+			return BitConverter.ToInt32(data, 0);
 		}
 	}
 }
