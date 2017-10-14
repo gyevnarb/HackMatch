@@ -146,6 +146,22 @@ namespace HackMatch
 			{
 			}
 		}
+		
+		public partial class Xml
+		{
+			
+			// aapt resource value: 0x7f040000
+			public const int Hackathons = 2130968576;
+			
+			static Xml()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Xml()
+			{
+			}
+		}
 	}
 }
 #pragma warning restore 1591
