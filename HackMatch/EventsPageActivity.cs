@@ -20,6 +20,11 @@ namespace HackMatch.Resources
             base.OnCreate(savedInstanceState);
 
             // Create your application here
-        }
+            SetContentView(Resource.Layout.EventsPage);
+/*
+            Button profileView = FindViewById<Button>(Resource.Id.profileViewButton);
+            var intent = new Intent(this, typeof(ProfilePageActivity));
+            StartActivity(intent);
+  */      }
     }
 }
