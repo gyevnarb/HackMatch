@@ -69,7 +69,7 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="EventsPageActivity.cs" />
     <Compile Include="MatchingPageActivity.cs" />
-    <Compile Include="PersonalMatchesPageActivity.cs" />
+    <Compile Include="ContactsPageActivity.cs" />
     <Compile Include="ProfilePageActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,7 +87,7 @@
     <AndroidResource Include="Resources\layout\MatchingPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\PersonalMatchesPage.axml">
+    <AndroidResource Include="Resources\layout\ContactsPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
