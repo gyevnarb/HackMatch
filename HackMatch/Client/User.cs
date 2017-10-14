@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Android.Graphics;
 
 namespace HackMatch
 {
@@ -28,5 +29,11 @@ namespace HackMatch
         /// Property to get and set spoken languages
         /// </summary>
         public List<string> SpokenLanguages { get; set; }
+
+        /// <summary>
+        /// Get the currently set profile picture of the user
+        /// <para>TODO: Find out the proper type of this property</para>
+        /// </summary>
+        public Bitmap ProfilePicture { get; private set; } 
     }
 }
