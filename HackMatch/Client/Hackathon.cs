@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Linq;
+using System.IO;
+using System.Xml;
 using Android.Graphics;
+using Android.Content.Res;
 
 namespace HackMatch
 {
@@ -35,5 +39,21 @@ namespace HackMatch
         /// <para>TODO: Find out proper type of the property</para>
         /// </summary>
         public Bitmap Background { get; private set; }
+
+        /// <summary>
+        /// Loads all hackathons' data from Assets/Hackathons
+        /// <para>Supply Assets property within onCreate() method to run this function</para>
+        /// </summary>
+        /// <param name="assets">AssetManager to read from Assets folder</param>
+        public void LoadHackathons(AssetManager assets)
+        {
+            string[] files = Directory.GetFiles("Assets/Hackathons", ".*xml");
+            
+            foreach (string name in files)
+            {
+                XmlReader reader = assets.OpenXmlResourceParser(name);
+                
+            }
+        }
     }
 }
