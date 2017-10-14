@@ -2,7 +2,7 @@
 {
 
     /// <summary>
-    /// Enumeration, that specifies different levels of user experience starting with prog
+    /// Enumeration, that specifies different levels of user experience starting with Professional (= 1)
     /// </summary>
     public enum ExperienceLevel
     {
