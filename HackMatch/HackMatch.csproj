@@ -51,10 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\DatabaseConnection.cs" />
     <Compile Include="Client\Hackathon.cs" />
     <Compile Include="Client\ExperienceLevel.cs" />
-    <Compile Include="Client\IDatabaseCommunicator.cs" />
+    <Compile Include="Client\IServerCommunicator.cs" />
+    <Compile Include="Client\ServerConnection.cs" />
     <Compile Include="Client\User.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
