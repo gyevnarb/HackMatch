@@ -30,6 +30,10 @@ namespace HackMatch
                 var intent = new Intent(this, typeof(EventsPageActivity));
                 StartActivity(intent);
             };
+
+            IServerCommunicator con = new ServerConnection(Constants.SERVER, Constants.PORT);
+            
+            editText1.Text = con.CalculateScore("asd", "qwe").ToString();
         }
     }
 }
