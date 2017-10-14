@@ -9,21 +9,21 @@ namespace HackMatch
 		/// <summary>
 		/// Requests a new profile, "userdata", is added to the database managed by the server.
 		/// </summary>
-		void CreateProfile(User userdata);
+		public void CreateProfile(User userdata);
 
 		/// <summary>
 		/// Requests a profile, "userdata", should take on the given changes in the database managed by the server.
 		/// </summary>
-		void EditProfile(User userdata);
+		public void EditProfile(User userdata);
 
 		/// <summary>
 		///	Requests the profile with the corresponding userid.
 		/// </summary>
-		User LoadProfile(string userid);
+		public User LoadProfile(string userid);
 
 		/// <summary>
 		/// Requests the match score between the given users.
 		/// </summary>
-		int CalculateScore(string userid1, string userid2);
+		public int CalculateScore(string userid1, string userid2);
 	}
 }
