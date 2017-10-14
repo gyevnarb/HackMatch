@@ -19,7 +19,34 @@ namespace HackMatch
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
+            SetContentView(Resource.Layout.ProfilePage);
+
+            Button profileView = FindViewById<Button>(Resource.Id.profileViewButton);
+            profileView.Click += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(ProfilePageActivity));
+                StartActivity(intent);
+            };
+
+            Button matchingView = FindViewById<Button>(Resource.Id.matchingViewButton);
+            matchingView.Click += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(ProfilePageActivity));
+                StartActivity(intent);
+            };
+
+            Button eventsView = FindViewById<Button>(Resource.Id.eventsViewButton);
+            eventsView.Click += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(ProfilePageActivity));
+                StartActivity(intent);
+            };
+            Button contactsView = FindViewById<Button>(Resource.Id.contactsViewButton);
+            contactsView.Click += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(ContactsPageActivity));
+                StartActivity(intent);
+            };
         }
     }
 }

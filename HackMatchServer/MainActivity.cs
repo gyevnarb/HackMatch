@@ -23,8 +23,8 @@ namespace HackMatchServer
 		{
 			NetworkStream input = client.GetStream();
 			byte[] buffer = new byte[4096];
-			Array.Clear(buffer, 0, 4096);
-			input.Read(buffer, 0, 4096);
+			Array.Clear(buffer, 0, buffer.Length);
+			input.Read(buffer, 0, buffer.Length);
 			switch (buffer[0])
 			{
 				case 0x01:
@@ -41,7 +41,7 @@ namespace HackMatchServer
 					break;
 				case 0x04:
 					Int32 result = 99;
-					input.Write(BitConverter.GetBytes(result), 0, 4);
+					input.Write(BitConverter.GetBytes(result), 0, sizeof(Int32));
 					Console.Out.WriteLine("<CalculateScore>");
 					break;
 				default:
