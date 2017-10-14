@@ -21,7 +21,7 @@ namespace HackMatch.Resources
 
             // Create your application here
             SetContentView(Resource.Layout.EventsPage);
-
+            
             Button profileView = FindViewById<Button>(Resource.Id.profileViewButton);
             profileView.Click += (sender, e) =>
             {
@@ -35,19 +35,29 @@ namespace HackMatch.Resources
                 var intent = new Intent(this, typeof(ProfilePageActivity));
                 StartActivity(intent);
             };
-
-            Button eventsView = FindViewById<Button>(Resource.Id.eventsViewButton);
-            eventsView.Click += (sender, e) =>
-            {
-                var intent = new Intent(this, typeof(EventsPageActivity));
-                StartActivity(intent);
-            };
+           
             Button contactsView = FindViewById<Button>(Resource.Id.contactsViewButton);
             contactsView.Click += (sender, e) =>
             {
                 var intent = new Intent(this, typeof(ContactsPageActivity));
                 StartActivity(intent);
             };
+
+            var layout = new LinearLayout(this);
+            layout.Orientation = Orientation.Vertical;
+
+            var aLabel = new TextView(this);
+            aLabel.Text = "Hello, World!!!";
+
+            var aButton = new Button(this);
+            aButton.Text = "Say Hello!";
+
+            aButton.Click += (sender, e) =>
+            { aLabel.Text = "Hello Android!"; };
+
+            layout.AddView(aLabel);
+            layout.AddView(aButton);
+            SetContentView(layout);
 
         }
     }

@@ -41,12 +41,7 @@ namespace HackMatch
                 var intent = new Intent(this, typeof(EventsPageActivity));
                 StartActivity(intent);
             };
-            Button contactsView = FindViewById<Button>(Resource.Id.contactsViewButton);
-            contactsView.Click += (sender, e) =>
-            {
-                var intent = new Intent(this, typeof(ContactsPageActivity));
-                StartActivity(intent);
-            };
+            
             // Create your application here
         }
     }

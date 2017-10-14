@@ -16,6 +16,7 @@ namespace HackMatch
     [Activity(Label = "MatchingPageActivity")]
     public class MatchingPageActivity : Activity
     {
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -28,12 +29,7 @@ namespace HackMatch
                 StartActivity(intent);
             };
 
-            Button matchingView = FindViewById<Button>(Resource.Id.matchingViewButton);
-            matchingView.Click += (sender, e) =>
-            {
-                var intent = new Intent(this, typeof(ProfilePageActivity));
-                StartActivity(intent);
-            };
+           
 
             Button eventsView = FindViewById<Button>(Resource.Id.eventsViewButton);
             eventsView.Click += (sender, e) =>
