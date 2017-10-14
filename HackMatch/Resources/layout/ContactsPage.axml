@@ -35,4 +35,10 @@
         android:layout_marginRight="260.5dp"
         android:layout_marginBottom="0.0dp"
         android:layout_marginLeft="0.0dp" />
+    <Button
+        android:text="Contacts"
+        android:id="@+id/contactsViewButton"
+        android:textSize="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>
