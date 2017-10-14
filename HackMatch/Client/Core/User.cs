@@ -7,17 +7,23 @@ namespace HackMatch
 	[DataContract]
     public class User
     {
+		///	<summary>
+		///	Property to get a unique username
+		/// </summary>
+		[DataMember]
+		public string UserName { get; }
+
         /// <summary>
         /// Property to get and set first names of user
         /// </summary>
 		[DataMember]
-        public List<string> FirstNames { get; set; }
+        public string FirstNames { get; set; }
 
         /// <summary>
         /// Property to get and set last names of user
         /// </summary>
 		[DataMember]
-        public List<string> LastNames { get; set; }
+        public string LastNames { get; set; }
 
         /// <summary>
         /// Property to get and set the user biography
