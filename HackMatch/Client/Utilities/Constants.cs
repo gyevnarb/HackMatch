@@ -15,7 +15,7 @@ namespace HackMatch
         public const string DATETIME_FORMAT = "dd/MM/yyyy HH:mm:ss";
 
         //Placeholder values for testing purposes.
-        public const string SERVER = "127.0.0.1";
+        public const string SERVER = "10.192.187.111";
 		public const Int32 PORT = 6969;
     }
 }
