@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+using System.IO;
 using Android.Content.Res;
 using Android.Graphics;
 
@@ -62,8 +63,23 @@ namespace HackMatch
                         current.Name = reader.Value;
                         break;
                     case "start":
-
+                        current.StartDate = DateTime.Parse(reader.Value);
+                        break;
+                    case "end":
+                        current.EndDate = DateTime.Parse(reader.Value);
+                        break;
+                    case "loc":
+                        current.Location = reader.Value;
+                        break;
+                    case "desc":
+                        current.Description = reader.Value;
+                        break;
+                    case "img":
+                        Stream bmp = assets.Open(reader.Value);
+                        current.Background = BitmapFactory.DecodeStream(bmp);
+                        break;
                     default:
+                        hacks.Add(current);
                         break;
                 }
             }
