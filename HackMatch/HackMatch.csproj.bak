@@ -16,7 +16,7 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -54,11 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\Hackathon.cs" />
-    <Compile Include="Client\ExperienceLevel.cs" />
+    <Compile Include="Client\Core\ExperienceLevel.cs" />
+    <Compile Include="Client\Core\Hackathon.cs" />
+    <Compile Include="Client\Core\User.cs" />
     <Compile Include="Client\IServerCommunicator.cs" />
     <Compile Include="Client\ServerConnection.cs" />
-    <Compile Include="Client\User.cs" />
+    <Compile Include="Client\Utilities\Constants.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="EventsPageActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

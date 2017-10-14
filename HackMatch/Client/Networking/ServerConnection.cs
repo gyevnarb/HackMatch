@@ -22,6 +22,14 @@ namespace HackMatch
 		}
 
 		/// <summary>
+		/// Closes the current connection.
+		/// </summary>
+		~ServerConnection()
+		{
+			connection.Close();
+		}
+
+		/// <summary>
 		/// Implements the CreateProfile function as described in IServerCommunicator.
 		/// </summary>
 		void IServerCommunicator.CreateProfile(User userdata)
