@@ -11,7 +11,7 @@ namespace HackMatch
 		///	Property to get a unique username
 		/// </summary>
 		[DataMember]
-		public string UserName { get; set; }
+		public string Username { get; set; }
 
         /// <summary>
         /// Property to get and set first names of user
