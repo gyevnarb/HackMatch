@@ -61,6 +61,8 @@ namespace HackMatch
                     case "name":
                         current.Name = reader.Value;
                         break;
+                    case "start":
+
                     default:
                         break;
                 }
