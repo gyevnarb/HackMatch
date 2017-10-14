@@ -17,7 +17,7 @@ namespace HackMatch
             // Set our view from the "main" layout resource
              SetContentView (Resource.Layout.Main);
             EditText editText1 = FindViewById<EditText>(Resource.Id.editText1);
-            TextView textView2 = FindViewById<EditText>(Resource.Id.textView2);
+            TextView textView2 = FindViewById<TextView>(Resource.Id.textView2);
             editText1.Text = "Yay, edit works!";
             editText1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
 
@@ -25,8 +25,11 @@ namespace HackMatch
             
             };
             Button authenticateButton = FindViewById<Button>(Resource.Id.authenticateButton);
-            var intent = new Intent(this, typeof(EventsPageActivity));
-            StartActivity(intent);
+            authenticateButton.Click += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(EventsPageActivity));
+                StartActivity(intent);
+            };
         }
     }
 }

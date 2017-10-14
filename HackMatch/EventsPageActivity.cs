@@ -21,10 +21,22 @@ namespace HackMatch.Resources
 
             // Create your application here
             SetContentView(Resource.Layout.EventsPage);
-/*
+
             Button profileView = FindViewById<Button>(Resource.Id.profileViewButton);
-            var intent = new Intent(this, typeof(ProfilePageActivity));
-            StartActivity(intent);
-  */      }
+            profileView.Click += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(ProfilePageActivity));
+                StartActivity(intent);
+            };
+          
+            Button matchingView = FindViewById<Button>(Resource.Id.matchingViewButton);
+            matchingView.Click += (sender, e) =>
+            {
+                var intent = new Intent(this, typeof(ProfilePageActivity));
+                StartActivity(intent);
+            };
+            
+
+        }
     }
 }
