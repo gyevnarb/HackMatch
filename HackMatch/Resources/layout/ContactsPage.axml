@@ -38,7 +38,7 @@
     <Button
         android:text="Contacts"
         android:id="@+id/contactsViewButton"
-        android:textSize="10"
+        android:textSize="10sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>
