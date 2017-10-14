@@ -13,13 +13,13 @@ using HackMatch.Resources;
 
 namespace HackMatch
 {
-    [Activity(Label = "MatchingPageActivity")]
-    public class MatchingPageActivity : Activity
+    [Activity(Label = "ContactsPageActivity")]
+    public class ContactsPageActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.MatchingPage);
+            SetContentView(Resource.Layout.ContactsPage);
 
             Button profileView = FindViewById<Button>(Resource.Id.profileViewButton);
             profileView.Click += (sender, e) =>
