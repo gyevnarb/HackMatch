@@ -1,0 +1,13 @@
+Two parts to each page - script and xaml file.
+use EditText editText1 = FindViewById<EditText>(Resource.Id.editText1);
+to access any element, where Resource.Id.x is the id of that element
+
+use this to change pages, where EventsPageActivity can be replaced by the script of the page you want to laod
+authenticateButton.Click += (sender, e) =>
+{
+                var intent = new Intent(this, typeof(EventsPageActivity));
+                StartActivity(intent);
+};
+
+make sure you have SetContentView(Resource.Layout.x) under base.OnCreate of a script
+where x is the name of the xaml file for that script
