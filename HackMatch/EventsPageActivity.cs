@@ -57,7 +57,8 @@ namespace HackMatch.Resources
 
             layout.AddView(aLabel);
             layout.AddView(aButton);
-            SetContentView(layout);
+            
+            //SetContentView(layout);
 
         }
     }
