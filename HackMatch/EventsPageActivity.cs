@@ -36,12 +36,7 @@ namespace HackMatch.Resources
                 StartActivity(intent);
             };
 
-            Button eventsView = FindViewById<Button>(Resource.Id.eventsViewButton);
-            eventsView.Click += (sender, e) =>
-            {
-                var intent = new Intent(this, typeof(EventsPageActivity));
-                StartActivity(intent);
-            };
+           
             Button contactsView = FindViewById<Button>(Resource.Id.contactsViewButton);
             contactsView.Click += (sender, e) =>
             {
