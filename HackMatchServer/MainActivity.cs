@@ -110,8 +110,10 @@ namespace HackMatchServer
 
 		static void LoadProfile(ref NetworkStream input)
 		{
+			Console.Out.WriteLine("Loading profile...");
 			DataContractJsonSerializer str = new DataContractJsonSerializer(typeof(string));
 			string username = (string)str.ReadObject(input);
+			Console.Out.WriteLine("Read username.");
 			string transaction = "SELECT Username, Information WHERE Username = \"" + username + "\";";
 			//	Get Json somehow and shove it in "input"
 			//json.WriteData(input);
@@ -130,9 +132,12 @@ namespace HackMatchServer
 			sinan.Technologies.Add("MIPS", ExperienceLevel.Beginner);
 			sinan.SpokenLanguages.Add("English");
 			sinan.SpokenLanguages.Add("Turkish");
+			Console.Out.WriteLine("Dummy user created.");
 			DataContractJsonSerializer json = new DataContractJsonSerializer(sinan.GetType());
 			input.WriteByte(0x01);
+			Console.Out.WriteLine("Written bool byte.");
 			json.WriteObject(input, sinan);
+			Console.Out.WriteLine("Written user.");
 		}
 
 		//	TODO: Ensure usernames cannot contain null characters

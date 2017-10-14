@@ -73,6 +73,8 @@ namespace HackMatch
 			TcpClient connection = new TcpClient(Server, Port);
 			NetworkStream load = connection.GetStream();
 			load.WriteByte(0x03);
+			DataContractJsonSerializer str = new DataContractJsonSerializer(typeof(string));
+			str.WriteObject(load, userid);
 			DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
 			int flag = load.ReadByte();
 			if (flag != 0x01)
