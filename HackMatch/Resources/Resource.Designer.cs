@@ -60,20 +60,26 @@ namespace HackMatch
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f050005
+			public const int authenticateButton = 2131034117;
+			
 			// aapt resource value: 0x7f050003
-			public const int authenticateButton = 2131034115;
-			
-			// aapt resource value: 0x7f050001
-			public const int editText1 = 2131034113;
-			
-			// aapt resource value: 0x7f050002
-			public const int editText2 = 2131034114;
-			
-			// aapt resource value: 0x7f050000
-			public const int textView1 = 2131034112;
+			public const int editText1 = 2131034115;
 			
 			// aapt resource value: 0x7f050004
-			public const int textView2 = 2131034116;
+			public const int editText2 = 2131034116;
+			
+			// aapt resource value: 0x7f050001
+			public const int matchingViewButton = 2131034113;
+			
+			// aapt resource value: 0x7f050000
+			public const int profileViewButton = 2131034112;
+			
+			// aapt resource value: 0x7f050002
+			public const int textView1 = 2131034114;
+			
+			// aapt resource value: 0x7f050006
+			public const int textView2 = 2131034118;
 			
 			static Id()
 			{
@@ -89,7 +95,19 @@ namespace HackMatch
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int EventsPage = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int Main = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int MatchingPage = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int PersonalMatchesPage = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int ProfilePage = 2130903044;
 			
 			static Layout()
 			{
