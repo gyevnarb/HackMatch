@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
+using Android.Content;
+using HackMatch.Resources;
 
 namespace HackMatch
 {
@@ -9,7 +11,7 @@ namespace HackMatch
     {
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
+            base.OnCreate(bundle);  
             
             // Set our view from the "main" layout resource
              SetContentView (Resource.Layout.Main);
@@ -21,6 +23,9 @@ namespace HackMatch
                 textView2.Text = e.Text.ToString();
             
             };
+            Button authenticateButton = FindViewById<Button>(Resource.Id.authenticateButton);
+            var intent = new Intent(this, typeof(EventsPageActivity));
+            StartActivity(intent);
         }
     }
 }
