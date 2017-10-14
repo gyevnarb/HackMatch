@@ -28,12 +28,13 @@ namespace HackMatch
 		/// </summary>
 		void IServerCommunicator.CreateProfile(User userdata)
 		{
+			Console.Out.WriteLine("<CreateProfile>");
 			TcpClient connection = new TcpClient(Server, Port);
-			byte[] data = Encoding.UTF8.GetBytes("CREATE ");
 			NetworkStream create = connection.GetStream();
-			create.Write(data, 0, data.Length);
+			create.WriteByte(0x01);
 			DataContractJsonSerializer json = new DataContractJsonSerializer(userdata.GetType());
 			json.WriteObject(create, userdata);
+			create.Close();
 			connection.Close();
 		}
 
@@ -42,13 +43,14 @@ namespace HackMatch
 		/// </summary>
 		void IServerCommunicator.EditProfile(User userdata)
 		{
+			Console.Out.WriteLine("<EditProfile>");
 			TcpClient connection = new TcpClient(Server, Port);
 			//	Need serialization before writing this part.
-			byte[] data = Encoding.UTF8.GetBytes("EDIT ");
 			NetworkStream edit = connection.GetStream();
-			edit.Write(data, 0, data.Length);
+			edit.WriteByte(0x02);
 			DataContractJsonSerializer json = new DataContractJsonSerializer(userdata.GetType());
 			json.WriteObject(edit, userdata);
+			edit.Close();
 			connection.Close();
 		}
 
@@ -57,11 +59,12 @@ namespace HackMatch
 		/// </summary>
 		User IServerCommunicator.LoadProfile(string userid)
 		{
+			Console.Out.WriteLine("<LoadProfile>");
 			TcpClient connection = new TcpClient(Server, Port);
-			byte[] data = Encoding.UTF8.GetBytes("LOAD " + userid);
 			NetworkStream load = connection.GetStream();
-			load.Write(data, 0, data.Length);
+			load.WriteByte(0x03);
 			DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
+			load.Close();
 			connection.Close();
 			return (User)json.ReadObject(load);
 		}
@@ -71,12 +74,15 @@ namespace HackMatch
 		/// </summary>
 		Int32 IServerCommunicator.CalculateScore(string userid1, string userid2)
 		{
+			Console.Out.WriteLine("<CalculateScore>");
 			TcpClient connection = new TcpClient(Server, Port);
-			byte[] data = Encoding.UTF8.GetBytes("SCORE " + userid1 + ' ' + userid2);
+			byte[] data = Encoding.UTF8.GetBytes(userid1 + ' ' + userid2);
 			NetworkStream score = connection.GetStream();
+			score.WriteByte(0x04);
 			score.Write(data, 0, data.Length);
 			byte[] result = new byte[4];
 			score.Read(result, 0, 4);
+			score.Close();
 			connection.Close();
 			return BitConverter.ToInt32(data, 0);
 		}

@@ -48,5 +48,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HackMatch\HackMatch.csproj">
+      <Project>{aa5cc406-bf16-4bd1-b089-1469d1471309}</Project>
+      <Name>HackMatch</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
