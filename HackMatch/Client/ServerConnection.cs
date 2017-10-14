@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Sockets;
+using System.Text;
 
 namespace HackMatch
 {
@@ -22,10 +23,10 @@ namespace HackMatch
 		/// <summary>
 		/// Implements the CreateProfile function as described in IServerCommunicator.
 		/// </summary>
-		public void IServerCommunicator.CreateProfile(User userdata)
+		void IServerCommunicator.CreateProfile(User userdata)
 		{
 			//	Need serialization before writing this part.
-			byte[] data = "CREATE ";
+			byte[] data = Encoding.ASCII.GetBytes("CREATE ");
 			NetworkStream create = connection.GetStream();
 			create.Write(data, 0, data.Length);
 		}
@@ -33,10 +34,10 @@ namespace HackMatch
 		/// <summary>
 		/// Implements the EditProfile function as described in IServerCommunicator.
 		/// </summary>
-		public void IServerCommunicator.EditProfile(User userdata)
+		void IServerCommunicator.EditProfile(User userdata)
 		{
 			//	Need serialization before writing this part.
-			byte[] data = "EDIT ";
+			byte[] data = Encoding.ASCII.GetBytes("EDIT ");
 			NetworkStream edit = connection.GetStream();
 			edit.Write(data, 0, data.Length);
 		}
@@ -44,24 +45,26 @@ namespace HackMatch
 		/// <summary>
 		/// Implements the LoadProfile function as described in IServerCommunicator.
 		/// </summary>
-		public User IServerCommunicator.LoadProfile(string userid)
+		User IServerCommunicator.LoadProfile(string userid)
 		{
-			byte[] data = "LOAD " + userid;
+			byte[] data = Encoding.ASCII.GetBytes("LOAD " + userid);
 			NetworkStream load = connection.GetStream();
 			load.Write(data, 0, data.Length);
 
 			//	Deserialize from load stream here.
 			//	return profile;
+			return null;	//	Placeholder
 		}
 
 		/// <summary>
 		/// Implements the CalculateScore function as described in IServerCommunicator.
 		/// </summary>
-		public int IServerCommunicator.CalculateScore(string userid1, string userid2)
+		int IServerCommunicator.CalculateScore(string userid1, string userid2)
 		{
-			byte[] data = "SCORE " + userid1 + ' ' + userid2;
+			byte[] data = Encoding.ASCII.GetBytes("SCORE " + userid1 + ' ' + userid2);
 			NetworkStream score = connection.GetStream();
-			score.Write(data);
+			score.Write(data, 0, data.Length);
+			return 0;	//	Placeholder
 		}
 	}
 }
