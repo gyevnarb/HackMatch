@@ -1,4 +1,6 @@
-﻿using Android.App;
+﻿using System.Collections.Generic;
+using System.Xml;
+using Android.App;
 using Android.Widget;
 using Android.OS;
 using Android.Content;
