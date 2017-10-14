@@ -16,7 +16,7 @@ namespace HackMatchServer
 
 		static void Main(string[] args)
 		{
-			const string connString = "Data Source=hackup-massive-garbage.c1dtjcewzlpj.eu-west-2.rds.amazonaws.com,1433;User Id=Murto;";
+			const string connString = "Data Source=hackup-massive-garbage.c1dtjcewzlpj.eu-west-2.rds.amazonaws.com,1433;User Id=Murto;Password=whirlpool";
 			connection = new SqlConnection(connString);
 			connection.Open();
 			TcpListener listener = TcpListener.Create(6969);
@@ -85,7 +85,7 @@ namespace HackMatchServer
 		{
 			DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
 			User profile = (User)json.ReadObject(input);
-			string username = profile.UserName;
+			string username = profile.Username;
 			MemoryStream transaction = new MemoryStream(Encoding.ASCII.GetBytes("INSERT INTO Profiles VALUES (\"" + username + "\",\""));
 			json.WriteObject(transaction, profile);
 			string str = transaction.ToString() + "\");";
@@ -98,7 +98,7 @@ namespace HackMatchServer
 		{
 			DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
 			User profile = (User)json.ReadObject(input);
-			string username = profile.UserName;
+			string username = profile.Username;
 			MemoryStream transaction = new MemoryStream(Encoding.ASCII.GetBytes("INSERT INTO Profiles VALUES (\"" + username + "\",\""));
 			json.WriteObject(transaction, profile);
 			string str = transaction.ToString() + "\");";
@@ -120,7 +120,7 @@ namespace HackMatchServer
 			//	Temporary:
 			User sinan = new User
 			{
-				UserName = "Dat Boi",
+				Username = "Dat Boi",
 				FirstNames = "Sinan",
 				LastNames = "Vanli",
 				Bio = "Dank"
