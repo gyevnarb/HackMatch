@@ -16,6 +16,7 @@ namespace HackMatch
     [Activity(Label = "MatchingPageActivity")]
     public class MatchingPageActivity : Activity
     {
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
