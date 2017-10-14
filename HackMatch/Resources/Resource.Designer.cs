@@ -60,20 +60,23 @@ namespace HackMatch
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050007
-			public const int authenticateButton = 2131034119;
+			// aapt resource value: 0x7f050008
+			public const int authenticateButton = 2131034120;
 			
-			// aapt resource value: 0x7f050003
-			public const int contactsViewButton = 2131034115;
-			
-			// aapt resource value: 0x7f050005
-			public const int editText1 = 2131034117;
+			// aapt resource value: 0x7f050004
+			public const int contactsViewButton = 2131034116;
 			
 			// aapt resource value: 0x7f050006
-			public const int editText2 = 2131034118;
+			public const int editText1 = 2131034118;
+			
+			// aapt resource value: 0x7f050007
+			public const int editText2 = 2131034119;
+			
+			// aapt resource value: 0x7f050003
+			public const int eventsViewButton = 2131034115;
 			
 			// aapt resource value: 0x7f050002
-			public const int eventsViewButton = 2131034114;
+			public const int linearLayout1 = 2131034114;
 			
 			// aapt resource value: 0x7f050001
 			public const int matchingViewButton = 2131034113;
@@ -81,11 +84,11 @@ namespace HackMatch
 			// aapt resource value: 0x7f050000
 			public const int profileViewButton = 2131034112;
 			
-			// aapt resource value: 0x7f050004
-			public const int textView1 = 2131034116;
+			// aapt resource value: 0x7f050005
+			public const int textView1 = 2131034117;
 			
-			// aapt resource value: 0x7f050008
-			public const int textView2 = 2131034120;
+			// aapt resource value: 0x7f050009
+			public const int textView2 = 2131034121;
 			
 			static Id()
 			{
