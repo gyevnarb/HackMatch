@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.IO;
-using Android.Content.Res;
+using System.Globalization;
 using Android.Graphics;
+using Android.Util;
+using Android.App;
 
 namespace HackMatch
 {
@@ -46,50 +48,60 @@ namespace HackMatch
         /// <para>Supply Assets property within onCreate() method to run this function</para>
         /// </summary>
         /// <param name="assets">AssetManager to read from Assets folder</param>
-        public static List<Hackathon> LoadHackathons(AssetManager assets)
+        public static List<Hackathon> LoadHackathons(XmlReader reader)
         {
             List<Hackathon> hacks = new List<Hackathon>();
+            reader.Read(); //Skip to first hackathon
             Hackathon current = new Hackathon(); ;
             try
             {
-                XmlReader reader = assets.OpenXmlResourceParser("Hackathons.xml");
-                while (reader.MoveToNextAttribute())
+                CultureInfo provider = CultureInfo.InvariantCulture;
+                while (reader.Read())
                 {
                     switch (reader.Name)
                     {
                         case "hackathon":
+                            if (current.Name != null) hacks.Add(current);
                             current = new Hackathon();
                             break;
                         case "name":
+                            reader.Read();
                             current.Name = reader.Value;
+                            reader.Read();
                             break;
                         case "start":
-                            current.StartDate = DateTime.Parse(reader.Value);
+                            reader.Read();                            
+                            current.StartDate = DateTime.ParseExact(reader.Value, Constants.DATETIME_FORMAT, provider);
+                            reader.Read();
                             break;
                         case "end":
-                            current.EndDate = DateTime.Parse(reader.Value);
+                            reader.Read();
+                            current.EndDate = DateTime.ParseExact(reader.Value, Constants.DATETIME_FORMAT, provider);
+                            reader.Read();
                             break;
                         case "loc":
+                            reader.Read();
                             current.Location = reader.Value;
+                            reader.Read();
                             break;
                         case "desc":
+                            reader.Read();
                             current.Description = reader.Value;
+                            reader.Read();
                             break;
                         case "img":
-                            Stream bmp = assets.Open(reader.Value);
+                            reader.Read();
+                            Stream bmp = Application.Context.Assets.Open(reader.Value);
                             current.Background = BitmapFactory.DecodeStream(bmp);
-                            break;
-                        default:
-                            hacks.Add(current);
+                            reader.Read();
                             break;
                     }
                 }
             }
             catch (Java.IO.IOException ex)
             {
-                Console.WriteLine(ex.Message);
+                Log.Error(Constants.LOG_TAG, ex.Message);
             }
-
 
             return hacks;
         }
