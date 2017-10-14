@@ -24,6 +24,6 @@ namespace HackMatch
 		/// <summary>
 		/// Requests the match score between the given users.
 		/// </summary>
-		int CalculateScore(string userid1, string userid2);
+		Int32 CalculateScore(string userid1, string userid2);
 	}
 }
