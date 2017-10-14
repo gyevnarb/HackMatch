@@ -16,9 +16,9 @@ namespace HackMatchServer
 
 		static void Main(string[] args)
 		{
-			const string connString = "Data Source=hackup-massive-garbage.c1dtjcewzlpj.eu-west-2.rds.amazonaws.com,1433;User Id=Murto;Password=whirlpool";
-			connection = new SqlConnection(connString);
-			connection.Open();
+			//const string connString = "Data Source=<SERVER>;User Id=<NAME>;Password=<PASS>";
+			//connection = new SqlConnection(connString);
+			//connection.Open();
 			TcpListener listener = TcpListener.Create(6969);
 			listener.Start();
 			Console.Out.WriteLine("Listening for incoming connections...");
