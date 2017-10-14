@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hackathons>
+  <hackathon>
+    <name>HackUPC</name>
+    <start>13-10-2017 21:00:00</start>
+    <end>15-10-2017 09:00:00</end>
+    <loc>Barcelona, Spain</loc>
+    <desc>HackUPC is the first student hackathon in Spain. This will be our fourth edition with 700 awesome hackers and lots of side activities to learn new technologies, meet interesting people and have fun. Come make history with us!</desc>
+    <img>Images/hackupc.jpg</img>
+  </hackathon>
+</hackathons>
