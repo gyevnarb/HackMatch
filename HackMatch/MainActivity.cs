@@ -11,8 +11,9 @@ namespace HackMatch
     {
         protected override void OnCreate(Bundle bundle)
         {
+
             base.OnCreate(bundle);  
-            
+
             // Set our view from the "main" layout resource
              SetContentView (Resource.Layout.Main);
             EditText editText1 = FindViewById<EditText>(Resource.Id.editText1);
@@ -20,7 +21,7 @@ namespace HackMatch
             editText1.Text = "Yay, edit works!";
             editText1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
 
-                textView2.Text = e.Text.ToString();
+                textView2.Text = e.Text.ToString(); 
             
             };
             Button authenticateButton = FindViewById<Button>(Resource.Id.authenticateButton);
