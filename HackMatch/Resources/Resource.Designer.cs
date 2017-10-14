@@ -72,6 +72,9 @@ namespace HackMatch
 			// aapt resource value: 0x7f06000a
 			public const int authenticateButton = 2131099658;
 			
+			// aapt resource value: 0x7f06000e
+			public const int buttonSideLayout = 2131099662;
+			
 			// aapt resource value: 0x7f060003
 			public const int contactsViewButton = 2131099651;
 			
@@ -79,22 +82,28 @@ namespace HackMatch
 			public const int eventsViewButton = 2131099650;
 			
 			// aapt resource value: 0x7f06000f
-			public const int imageView1 = 2131099663;
+			public const int fnameTextView = 2131099663;
+			
+			// aapt resource value: 0x7f06000d
+			public const int groupLayout1 = 2131099661;
 			
 			// aapt resource value: 0x7f060004
 			public const int linearLayout1 = 2131099652;
-			
-			// aapt resource value: 0x7f06000d
-			public const int linearLayout2 = 2131099661;
-			
-			// aapt resource value: 0x7f06000e
-			public const int linearLayout3 = 2131099662;
 			
 			// aapt resource value: 0x7f060001
 			public const int matchingViewButton = 2131099649;
 			
 			// aapt resource value: 0x7f060009
 			public const int passWord = 2131099657;
+			
+			// aapt resource value: 0x7f060010
+			public const int pictureGroup = 2131099664;
+			
+			// aapt resource value: 0x7f060012
+			public const int profileImageView = 2131099666;
+			
+			// aapt resource value: 0x7f060011
+			public const int profileTextView = 2131099665;
 			
 			// aapt resource value: 0x7f060000
 			public const int profileViewButton = 2131099648;

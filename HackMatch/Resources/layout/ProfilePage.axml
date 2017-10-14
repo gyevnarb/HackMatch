@@ -78,9 +78,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/profileTextView"
-            android:layout_marginTop="5"
-            android:layout_marginLeft="5"
-            android:layout_marginBottom="1" />
+            android:layout_marginTop="5px"
+            android:layout_marginLeft="5px"
+            android:layout_marginBottom="1px" />
         <ImageView
             android:src="@drawable/me"
             android:id="@+id/profileImageView"
