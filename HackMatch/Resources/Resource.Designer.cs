@@ -53,6 +53,9 @@ namespace HackMatch
 			// aapt resource value: 0x7f020002
 			public const int junction = 2130837506;
 			
+			// aapt resource value: 0x7f020003
+			public const int me = 2130837507;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -75,8 +78,17 @@ namespace HackMatch
 			// aapt resource value: 0x7f060002
 			public const int eventsViewButton = 2131099650;
 			
+			// aapt resource value: 0x7f06000f
+			public const int imageView1 = 2131099663;
+			
 			// aapt resource value: 0x7f060004
 			public const int linearLayout1 = 2131099652;
+			
+			// aapt resource value: 0x7f06000d
+			public const int linearLayout2 = 2131099661;
+			
+			// aapt resource value: 0x7f06000e
+			public const int linearLayout3 = 2131099662;
 			
 			// aapt resource value: 0x7f060001
 			public const int matchingViewButton = 2131099649;
