@@ -35,7 +35,6 @@ namespace HackMatch.Resources
                 var intent = new Intent(this, typeof(ProfilePageActivity));
                 StartActivity(intent);
             };
-
            
             Button contactsView = FindViewById<Button>(Resource.Id.contactsViewButton);
             contactsView.Click += (sender, e) =>

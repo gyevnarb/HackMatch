@@ -6,7 +6,7 @@
     <end>15/10/2017 09:00:00</end>
     <loc>Barcelona, Spain</loc>
     <desc>HackUPC is the first student hackathon in Spain. This will be our fourth edition with 700 awesome hackers and lots of side activities to learn new technologies, meet interesting people and have fun. Come make history with us!</desc>
-    <img>Images/hackupc.jpg</img>
+    <img>hackupc.jpg</img>
   </hackathon>
   <hackathon>
     <name>Junction</name>
@@ -14,6 +14,6 @@
     <end>26/11/2017 12:00:00</end>
     <loc>Helsinki, Finland</loc>
     <desc>Junction is a meeting point for thousands of developers, designers, and entrepreneurs from around the world.</desc>
-    <img>Images/junction.jpg</img>
+    <img>junction.jpg</img>
   </hackathon>
 </hackathons>

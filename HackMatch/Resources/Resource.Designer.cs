@@ -45,7 +45,13 @@ namespace HackMatch
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			public const int hackupc = 2130837504;
+			
+			// aapt resource value: 0x7f020001
+			public const int Icon = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int junction = 2130837506;
 			
 			static Drawable()
 			{
@@ -60,17 +66,11 @@ namespace HackMatch
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060008
-			public const int authenticateButton = 2131099656;
+			// aapt resource value: 0x7f06000a
+			public const int authenticateButton = 2131099658;
 			
 			// aapt resource value: 0x7f060003
 			public const int contactsViewButton = 2131099651;
-			
-			// aapt resource value: 0x7f060006
-			public const int editText1 = 2131099654;
-			
-			// aapt resource value: 0x7f060007
-			public const int editText2 = 2131099655;
 			
 			// aapt resource value: 0x7f060002
 			public const int eventsViewButton = 2131099650;
@@ -81,14 +81,29 @@ namespace HackMatch
 			// aapt resource value: 0x7f060001
 			public const int matchingViewButton = 2131099649;
 			
+			// aapt resource value: 0x7f060009
+			public const int passWord = 2131099657;
+			
 			// aapt resource value: 0x7f060000
 			public const int profileViewButton = 2131099648;
+			
+			// aapt resource value: 0x7f06000c
+			public const int signUpButton = 2131099660;
 			
 			// aapt resource value: 0x7f060005
 			public const int textView1 = 2131099653;
 			
-			// aapt resource value: 0x7f060009
-			public const int textView2 = 2131099657;
+			// aapt resource value: 0x7f060006
+			public const int textView2 = 2131099654;
+			
+			// aapt resource value: 0x7f060008
+			public const int textView3 = 2131099656;
+			
+			// aapt resource value: 0x7f06000b
+			public const int textView4 = 2131099659;
+			
+			// aapt resource value: 0x7f060007
+			public const int userName = 2131099655;
 			
 			static Id()
 			{

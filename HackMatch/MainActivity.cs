@@ -19,19 +19,26 @@ namespace HackMatch
 
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.Main);
-            EditText editText1 = FindViewById<EditText>(Resource.Id.editText1);
-            TextView textView2 = FindViewById<TextView>(Resource.Id.textView2);
-            editText1.Text = "Yay, edit works!";
-            editText1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
-
-                textView2.Text = e.Text.ToString(); 
             
-            };
+            EditText username = FindViewById<EditText>(Resource.Id.userName);
+            EditText password = FindViewById<EditText>(Resource.Id.passWord);
+            //editText1.Text = "Yay, edit works!";
+            //editText1.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+
+            //    textView2.Text = e.Text.ToString(); 
+            
+            //};
+
             Button authenticateButton = FindViewById<Button>(Resource.Id.authenticateButton);
             authenticateButton.Click += (sender, e) =>
             {
-                var intent = new Intent(this, typeof(EventsPageActivity));
-                StartActivity(intent);
+                string un = username.Text;
+                string pw = password.Text;
+                if (checkCredentials(un, pw))
+                {
+                    var intent = new Intent(this, typeof(EventsPageActivity));
+                    StartActivity(intent);
+                }
             };
 
             //Load hackathons
@@ -40,6 +47,12 @@ namespace HackMatch
             {
                 hacks = Hackathon.LoadHackathons(reader);
             }
+        }
+
+        private bool checkCredentials(string username, string password)
+        {
+            //TODO: Implement secure login
+            return true;//username == "root" && password == "login";
         }
     }
 }
