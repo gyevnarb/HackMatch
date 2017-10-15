@@ -57,6 +57,9 @@ namespace HackMatch
         /// </summary>
         public Bitmap GetProfilePicture() { return (Bitmap)BitmapFactory.FromArray<byte>(ProfilePictureData); }
 
+		/// <summary>
+		/// Set the profile picture of the user
+		/// </summary>
 		public void SetProfilePicture(Bitmap picture)
 		{
 			using (var stream = new MemoryStream())
