@@ -118,7 +118,7 @@ namespace HackMatch
 			NetworkStream names = connection.GetStream();
 			names.WriteByte(0x05);
 			int flag = names.ReadByte();
-			if (flag != 1)
+			if (flag != 0x01)
 			{
 				throw new Exception("Operation failed.");
 			}

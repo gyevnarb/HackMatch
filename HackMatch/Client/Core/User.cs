@@ -47,6 +47,7 @@ namespace HackMatch
         /// <summary>
         /// Property that stores bitmap stream of ProfilePicture
         /// </summary>
+		[DataMember]
         public Stream ProfilePictureStream { get; set; }
 
         /// <summary>
