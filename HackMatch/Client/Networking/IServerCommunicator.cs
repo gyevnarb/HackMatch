@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace HackMatch
 {
 	/// <summary>
@@ -25,5 +27,11 @@ namespace HackMatch
 		/// Requests the match score between the given users.
 		/// </summary>
 		Int32 CalculateScore(string userid1, string userid2);
+
+		/// <summary>
+		///	Requests the usernames held by the server.
+		/// </summary>
+		/// <returns></returns>
+		Dictionary<string, User>.KeyCollection GetUsernames();
 	}
 }

@@ -16,7 +16,7 @@ namespace HackMatch
     [Activity(Label = "MatchingPageActivity")]
     public class MatchingPageActivity : Activity
     {
-        
+        public static int hackathonId;   
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

@@ -35,4 +35,55 @@
             android:layout_height="match_parent"
             android:textSize="10sp" />
     </LinearLayout>
+    <ImageButton
+        android:src="@drawable/hackupc"
+        android:layout_width="match_parent"
+        android:layout_height="100.0dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/imageButton1"
+        android:layout_marginBottom="0.0dp" />
+    <TextView
+        android:text="HackUPC, Barcelona, 13th-15th October"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
+    <ImageButton
+        android:src="@drawable/junction"
+        android:layout_width="match_parent"
+        android:layout_height="100.0dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/imageButton2"
+        android:layout_marginRight="0.0dp"
+        android:layout_gravity="center" />
+    <TextView
+        android:text="HackJunction, Helsinki, 24th-26th November"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
+    <ImageButton
+        android:src="@drawable/lausannepano"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:id="@+id/imageButton3" />
+    <TextView
+        android:text="LauzHack, Lausanne, 11th-12th November"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3" />
+    <ImageButton
+        android:src="@android:drawable/ic_menu_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:id="@+id/imageButton4" />
+    <TextView
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4" />
 </LinearLayout>
