@@ -144,10 +144,19 @@ namespace HackMatchServer
 			DataContractJsonSerializer str = new DataContractJsonSerializer(typeof(string));
 			string user1 = (string)str.ReadObject(input);
 			string user2 = (string)str.ReadObject(input);
-			input.WriteByte(0x01);  //	Success
-			DataContractJsonSerializer num = new DataContractJsonSerializer(typeof(Int32));
-			num.WriteObject(input, (Int32)10);  //Return score of 10
-			Console.Out.WriteLine("Score was created.");
+			if (users.ContainsKey(user1) && users.ContainsKey(user2))
+			{
+				input.WriteByte(0x01);  //	Success
+				DataContractJsonSerializer num = new DataContractJsonSerializer(typeof(Int32));
+				num.WriteObject(input, (Int32)10);  //Return score of 10
+				Console.Out.WriteLine("Score was calculated.");
+			}
+			else
+			{
+				input.WriteByte(0x00);
+				Console.Out.WriteLine("Score was not calculated.");
+			}
+
 		}
 
 		static void GetUsernames(ref NetworkStream input)
