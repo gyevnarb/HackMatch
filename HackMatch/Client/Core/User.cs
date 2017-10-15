@@ -8,6 +8,8 @@ namespace HackMatch
     [DataContract]
     public class User
     {
+        private Bitmap userPic;
+
 		///	<summary>
 		///	Property to get a unique username
 		/// </summary>
@@ -51,21 +53,23 @@ namespace HackMatch
         public byte[] ProfilePictureData { get; set; }
 
         /// <summary>
-        /// Get the currently set profile picture of the user
-        /// <para>TODO: Find out the proper type of this property</para>
+        /// Propery to access profile picture of user
         /// </summary>
-        public Bitmap GetProfilePicture() { return BitmapFactory.FromArray<byte>(ProfilePictureData) as Bitmap; }
-
-		/// <summary>
-		/// Set the profile picture of the user
-		/// </summary>
-		public void SetProfilePicture(Bitmap picture)
-		{
-			using (var stream = new MemoryStream())
-			{
-				picture.Compress(Bitmap.CompressFormat.Png, 0, stream);
-				ProfilePictureData = stream.ToArray();
-			}
-		}
+        public Bitmap ProfilePicture
+        {
+            get
+            {
+                return userPic;
+            }
+            set
+            {
+                using (var stream = new MemoryStream())
+                {
+                    value.Compress(Bitmap.CompressFormat.Png, 0, stream);
+                    userPic = value;
+                    ProfilePictureData = stream.ToArray();
+                }
+            }
+        }
     }
 }
