@@ -72,8 +72,8 @@ namespace HackMatch
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f06000e
-			public const int authenticateButton = 2131099662;
+			// aapt resource value: 0x7f06000d
+			public const int authenticateButton = 2131099661;
 			
 			// aapt resource value: 0x7f06001f
 			public const int bioLayout = 2131099679;
@@ -102,8 +102,8 @@ namespace HackMatch
 			// aapt resource value: 0x7f060007
 			public const int imageButton2 = 2131099655;
 			
-			// aapt resource value: 0x7f06000a
-			public const int imageButton4 = 2131099658;
+			// aapt resource value: 0x7f060009
+			public const int imageButton3 = 2131099657;
 			
 			// aapt resource value: 0x7f060004
 			public const int linearLayout1 = 2131099652;
@@ -126,8 +126,8 @@ namespace HackMatch
 			// aapt resource value: 0x7f060017
 			public const int natLangTextView = 2131099671;
 			
-			// aapt resource value: 0x7f06000d
-			public const int passWord = 2131099661;
+			// aapt resource value: 0x7f06000c
+			public const int passWord = 2131099660;
 			
 			// aapt resource value: 0x7f06001b
 			public const int profileImageView = 2131099675;
@@ -156,11 +156,11 @@ namespace HackMatch
 			// aapt resource value: 0x7f060008
 			public const int textView2 = 2131099656;
 			
-			// aapt resource value: 0x7f060009
-			public const int textView3 = 2131099657;
+			// aapt resource value: 0x7f06000a
+			public const int textView3 = 2131099658;
 			
-			// aapt resource value: 0x7f06000b
-			public const int textView4 = 2131099659;
+			// aapt resource value: 0x7f06000e
+			public const int textView4 = 2131099662;
 			
 			// aapt resource value: 0x7f060016
 			public const int textView5 = 2131099670;
@@ -174,8 +174,8 @@ namespace HackMatch
 			// aapt resource value: 0x7f060013
 			public const int unameTextView = 2131099667;
 			
-			// aapt resource value: 0x7f06000c
-			public const int userName = 2131099660;
+			// aapt resource value: 0x7f06000b
+			public const int userName = 2131099659;
 			
 			static Id()
 			{

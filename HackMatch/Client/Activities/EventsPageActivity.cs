@@ -67,13 +67,7 @@ namespace HackMatch.Resources
                 MatchingPageActivity.hackathonId = 3;
                 StartActivity(intent);
             };
-            ImageButton img4 = FindViewById<ImageButton>(Resource.Id.imageButton4);
-            contactsView.Click += (sender, e) =>
-            {
-                var intent = new Intent(this, typeof(MatchingPageActivity));
-                MatchingPageActivity.hackathonId = 4;
-                StartActivity(intent);
-            };
+
 
             var layout = new LinearLayout(this);
             layout.Orientation = Orientation.Vertical;

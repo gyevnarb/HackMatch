@@ -48,6 +48,6 @@ namespace HackMatch
         /// <para>TODO: Find out the proper type of this property</para>
         /// </summary>
 		[DataMember]
-        public Bitmap ProfilePicture { get; private set; } 
+        public Bitmap ProfilePicture { get; set; } 
     }
 }
