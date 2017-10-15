@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Android.Graphics;
 using System.Runtime.Serialization;
+using System.IO;
+using Android.Graphics;
 
 namespace HackMatch
 {
@@ -48,6 +50,12 @@ namespace HackMatch
         /// <para>TODO: Find out the proper type of this property</para>
         /// </summary>
 		[DataMember]
-        public Bitmap ProfilePicture { get; set; } 
+        public Bitmap ProfilePicture { get { return BitmapFactory.DecodeStream(ProfileStream); } } 
+
+        /// <summary>
+        /// Property that stores bitmap stream of ProfilePicture
+        /// </summary>
+        public Stream ProfilePictureStream { get; set; }
+
     }
 }

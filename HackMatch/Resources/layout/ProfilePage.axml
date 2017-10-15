@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/natLangTextView"
                     android:text="*natLangTextView*"
-                    android:gravity="right" />
+                    android:gravity="left" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -137,10 +137,10 @@
                 android:layout_marginTop="5dp" />
             <TextView
                 android:text="*techTextView*"
-                android:layout_width="match_parent"
+                android:layout_width="248.0dp"
                 android:layout_height="176.0dp"
                 android:id="@+id/techTextView"
-                android:gravity="right" />
+                android:gravity="left" />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -165,7 +165,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/bioTextView"
-                android:gravity="right"
+                android:gravity="left"
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp" />
         </ScrollView>

@@ -16,6 +16,7 @@ namespace HackMatch
 
         //Placeholder values for testing purposes.
         public const string SERVER = "10.192.187.111";
+        public const string ETH_SERVER = "169.254.107.100";
 		public const Int32 PORT = 6969;
     }
 }

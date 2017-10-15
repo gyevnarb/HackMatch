@@ -21,9 +21,6 @@ namespace HackMatch
 
             SetContentView(Resource.Layout.ProfilePage);
 
-            TextView natLangs = FindViewById<TextView>(Resource.Id.natLangTextView);
-            natLangs.Text = "1. Test\n2. Help";
-
             Button matchingView = FindViewById<Button>(Resource.Id.matchingViewButton);
             matchingView.Click += (sender, e) =>
             {
@@ -47,6 +44,7 @@ namespace HackMatch
             User u = new User();
             u.FirstNames = "Balint";
             u.LastNames = "Gyevnar";
+            u.Username = "gyevnarb";
             u.SpokenLanguages = new List<string>{ "English", "Hungarian", "German", "Russian"};
             u.Technologies = new Dictionary<string, ExperienceLevel> {
                 { "C#", ExperienceLevel.Experienced},
@@ -55,7 +53,7 @@ namespace HackMatch
                 { "Tensorflow", ExperienceLevel.Practiced}
             };
             u.Bio = "Hi! I am 20 year Hungarian coder, who has a great passion for machine learning and sustainable development. I also like to play the piano and learn new languages.";
-            u.ProfilePicture = BitmapFactory.DecodeStream(Resources.OpenRawResource(Resource.Drawable.me));
+            u.ProfileStream = Resources.OpenRawResource(Resource.Drawable.me);
             try
             {
                 IServerCommunicator com = new ServerConnection(Constants.SERVER, Constants.PORT);
@@ -65,7 +63,19 @@ namespace HackMatch
             {
                 Log.Error(Constants.LOG_TAG, ex.Message);
             }
-            
+
+            TextView fname = FindViewById<TextView>(Resource.Id.fnameTextView);
+            fname.Text = u.FirstNames;
+            TextView lname = FindViewById<TextView>(Resource.Id.lnameTextView);
+            lname.Text = u.LastNames;
+            TextView uname = FindViewById<TextView>(Resource.Id.unameTextView);
+            uname.Text = u.Username;
+            TextView bio = FindViewById<TextView>(Resource.Id.bioTextView);
+            bio.Text = u.Bio;
+            TextView techs = FindViewById<TextView>(Resource.Id.techTextView);
+            techs.Text = Utils.DictionaryToString<string, ExperienceLevel>(u.Technologies);
+            TextView natLangs = FindViewById<TextView>(Resource.Id.natLangTextView);
+            natLangs.Text = u.SpokenLanguages.Aggregate((str, s) => str += $"• {s}\n");
         }
     }
 }

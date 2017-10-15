@@ -71,6 +71,7 @@
     <Compile Include="Client\Activities\MatchingPageActivity.cs" />
     <Compile Include="Client\Activities\ContactsPageActivity.cs" />
     <Compile Include="Client\Activities\ProfilePageActivity.cs" />
+    <Compile Include="Client\Utilities\Utils.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
