@@ -74,7 +74,7 @@
     <ImageButton
         android:src="@drawable/lausannepano"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="99.5dp"
         android:scaleType="fitCenter"
          android:layout_marginLeft="0.0dp"
         android:layout_marginTop="0.0dp"
