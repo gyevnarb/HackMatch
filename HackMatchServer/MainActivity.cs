@@ -6,19 +6,18 @@ using System.Threading;
 using HackMatch;
 using System.IO;
 using System.Text;
+using System.Collections.Generic;
 
 namespace HackMatchServer
 {
 	class MainActivity
 	{
 
-		static SqlConnection connection;
+		static Dictionary<string, User> users;
 
 		static void Main(string[] args)
 		{
-			const string connString = "Data Source=hackup-massive-garbage.c1dtjcewzlpj.eu-west-2.rds.amazonaws.com,1433;User Id=Murto;Password=whirlpool";
-			connection = new SqlConnection(connString);
-			connection.Open();
+			LoadUsers();
 			TcpListener listener = TcpListener.Create(6969);
 			listener.Start();
 			Console.Out.WriteLine("Listening for incoming connections...");
@@ -61,6 +60,10 @@ namespace HackMatchServer
 						Console.Out.WriteLine("<CalculateScore>");
 						CalculateScore(ref input);
 						break;
+					case 0x05:
+						Console.Out.WriteLine("<GetUsernames>");
+						GetUsernames(ref input);
+						break;
 					default:
 						input.WriteByte(0x00);
 						Console.Out.WriteLine("<Whoops>");
@@ -85,54 +88,48 @@ namespace HackMatchServer
 		{
 			DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
 			User profile = (User)json.ReadObject(input);
-			string username = profile.Username;
-			MemoryStream transaction = new MemoryStream(Encoding.ASCII.GetBytes("INSERT INTO Profiles VALUES (\"" + username + "\",\""));
-			json.WriteObject(transaction, profile);
-			string str = transaction.ToString() + "\");";
-
-			//	Temporary:
-			input.WriteByte(0x01);
+			if (users.ContainsKey(profile.Username))
+			{
+				input.WriteByte(0x00);
+			}
+			else
+			{
+				users[profile.Username] = profile;
+				input.WriteByte(0x01);
+				UpdateUsers();
+			}
 		}
 
 		static void EditProfile(ref NetworkStream input)
 		{
 			DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
 			User profile = (User)json.ReadObject(input);
-			string username = profile.Username;
-			MemoryStream transaction = new MemoryStream(Encoding.ASCII.GetBytes("INSERT INTO Profiles VALUES (\"" + username + "\",\""));
-			json.WriteObject(transaction, profile);
-			string str = transaction.ToString() + "\");";
-			//	TODO: Run transaction
-
-			//	Temporary:
-			input.WriteByte(0x01);
+			if (users.ContainsKey(profile.Username))
+			{
+				users[profile.Username] = profile;
+				input.WriteByte(0x01);
+				UpdateUsers();
+			}
+			else
+			{
+				input.WriteByte(0x00);
+			}
 		}
 
 		static void LoadProfile(ref NetworkStream input)
 		{
 			DataContractJsonSerializer str = new DataContractJsonSerializer(typeof(string));
 			string username = (string)str.ReadObject(input);
-			string transaction = "SELECT Username, Information WHERE Username = \"" + username + "\";";
-			//	Get Json somehow and shove it in "input"
-			//json.WriteData(input);
-			//	TODO: Run transaction
-
-			//	Temporary:
-			User sinan = new User
+			if (users.ContainsKey(username))
 			{
-				Username = "Dat Boi",
-				FirstNames = "Sinan",
-				LastNames = "Vanli",
-				Bio = "Dank"
-			};
-			sinan.Technologies.Add("Java", ExperienceLevel.Experienced);
-			sinan.Technologies.Add("Haskell", ExperienceLevel.Learner);
-			sinan.Technologies.Add("MIPS", ExperienceLevel.Beginner);
-			sinan.SpokenLanguages.Add("English");
-			sinan.SpokenLanguages.Add("Turkish");
-			DataContractJsonSerializer json = new DataContractJsonSerializer(sinan.GetType());
-			input.WriteByte(0x01);
-			json.WriteObject(input, sinan);
+				input.WriteByte(0x01);
+				DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
+				json.WriteObject(input, users[username]);
+			}
+			else
+			{
+				input.WriteByte(0x00);
+			}
 		}
 
 		//	TODO: Ensure usernames cannot contain null characters
@@ -141,19 +138,46 @@ namespace HackMatchServer
 			DataContractJsonSerializer str = new DataContractJsonSerializer(typeof(string));
 			string user1 = (string)str.ReadObject(input);
 			string user2 = (string)str.ReadObject(input);
-			string transaction = "SELECT Username, Information WHERE Username = \"" + user1 + "\" OR \"" + user2 + "\";";
-			//	TODO: Run transaction
-
-			//	Temporary:
 			input.WriteByte(0x01);  //	Success
 			DataContractJsonSerializer num = new DataContractJsonSerializer(typeof(Int32));
 			num.WriteObject(input, (Int32)10);	//Return score of 10
+		}
+
+		static void GetUsernames(ref NetworkStream input)
+		{
+			DataContractJsonSerializer keyser = new DataContractJsonSerializer(users.Keys.GetType());
+			input.WriteByte(0x01);
+			keyser.WriteObject(input, users.Keys);
 		}
 
 		static void HandleInvalidInput(ref NetworkStream input)
 		{
 			input.Flush();
 			input.WriteByte(0x00);
+		}
+
+		static void UpdateUsers()
+		{
+			DataContractJsonSerializer dbser = new DataContractJsonSerializer(users.GetType());
+			FileStream dbout = new FileStream("users.json", FileMode.OpenOrCreate);
+			dbser.WriteObject(dbout, users);
+			dbout.Close();
+		}
+
+		static void LoadUsers()
+		{
+			try
+			{
+				DataContractJsonSerializer dbser = new DataContractJsonSerializer(users.GetType());
+				FileStream dbout = new FileStream("users.json", FileMode.Open);
+				users = (Dictionary<string, User>)dbser.ReadObject(dbout);
+				dbout.Close();
+			}
+			catch (Exception ex)
+			{
+				users = new Dictionary<string, User>();
+				Console.WriteLine("Failure loading users: " + ex.Data);
+			}
 		}
 	}
 }

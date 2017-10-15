@@ -21,7 +21,8 @@ namespace HackMatch
 
             SetContentView(Resource.Layout.ProfilePage);
 
-          
+            TextView natLangs = FindViewById<TextView>(Resource.Id.natLangTextView);
+            natLangs.Text = "1. Test\n2. Help";
 
             Button matchingView = FindViewById<Button>(Resource.Id.matchingViewButton);
             matchingView.Click += (sender, e) =>
