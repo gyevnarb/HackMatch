@@ -53,12 +53,14 @@ namespace HackMatch
                 { "Tensorflow", ExperienceLevel.Practiced}
             };
             u.Bio = "Hi! I am 20 year Hungarian coder, who has a great passion for machine learning and sustainable development. I also like to play the piano and learn new languages.";
-            u.ProfilePictureStream = Resources.OpenRawResource(Resource.Drawable.me);
+            u.SetProfilePicture(BitmapFactory.DecodeStream(Resources.OpenRawResource(Resource.Drawable.me)));
             try
             {
                 IServerCommunicator com = new ServerConnection(Constants.SERVER, Constants.PORT);
+				Console.Out.WriteLine("Creating profile...");
                 com.CreateProfile(u);
-            }
+				Console.Out.WriteLine("Profile created?");
+			}
             catch (Exception ex)
             {
                 Log.Error(Constants.LOG_TAG, ex.Message);

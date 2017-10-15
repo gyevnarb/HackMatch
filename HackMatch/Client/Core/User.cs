@@ -49,12 +49,21 @@ namespace HackMatch
         /// Property that stores bitmap stream of ProfilePicture
         /// </summary>
 		[DataMember]
-        public Stream ProfilePictureStream { get; set; }
+        public byte[] ProfilePictureData { get; set; }
 
         /// <summary>
         /// Get the currently set profile picture of the user
         /// <para>TODO: Find out the proper type of this property</para>
         /// </summary>
-        public Bitmap GetProfilePicture() { return BitmapFactory.DecodeStream(ProfilePictureStream); } 
+        public Bitmap GetProfilePicture() { return (Bitmap)BitmapFactory.FromArray<byte>(ProfilePictureData); }
+
+		public void SetProfilePicture(Bitmap picture)
+		{
+			using (var stream = new MemoryStream())
+			{
+				picture.Compress(Bitmap.CompressFormat.Png, 0, stream);
+				ProfilePictureData = stream.ToArray();
+			}
+		}
     }
 }
