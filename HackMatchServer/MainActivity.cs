@@ -91,12 +91,14 @@ namespace HackMatchServer
 			if (users.ContainsKey(profile.Username))
 			{
 				input.WriteByte(0x00);
+				Console.Out.WriteLine("Profile was not created.");
 			}
 			else
 			{
 				users[profile.Username] = profile;
 				input.WriteByte(0x01);
 				UpdateUsers();
+				Console.Out.WriteLine("Profile was created.");
 			}
 		}
 
@@ -109,10 +111,12 @@ namespace HackMatchServer
 				users[profile.Username] = profile;
 				input.WriteByte(0x01);
 				UpdateUsers();
+				Console.Out.WriteLine("Profile was edited.");
 			}
 			else
 			{
 				input.WriteByte(0x00);
+				Console.Out.WriteLine("Profile was not edited.");
 			}
 		}
 
@@ -125,10 +129,12 @@ namespace HackMatchServer
 				input.WriteByte(0x01);
 				DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
 				json.WriteObject(input, users[username]);
+				Console.Out.WriteLine("Profile was loaded.");
 			}
 			else
 			{
 				input.WriteByte(0x00);
+				Console.Out.WriteLine("Profile was not loaded.");
 			}
 		}
 
@@ -140,7 +146,8 @@ namespace HackMatchServer
 			string user2 = (string)str.ReadObject(input);
 			input.WriteByte(0x01);  //	Success
 			DataContractJsonSerializer num = new DataContractJsonSerializer(typeof(Int32));
-			num.WriteObject(input, (Int32)10);	//Return score of 10
+			num.WriteObject(input, (Int32)10);  //Return score of 10
+			Console.Out.WriteLine("Score was created.");
 		}
 
 		static void GetUsernames(ref NetworkStream input)
@@ -148,6 +155,7 @@ namespace HackMatchServer
 			DataContractJsonSerializer keyser = new DataContractJsonSerializer(users.Keys.GetType());
 			input.WriteByte(0x01);
 			keyser.WriteObject(input, users.Keys);
+			Console.Out.WriteLine("Usernames were returned.");
 		}
 
 		static void HandleInvalidInput(ref NetworkStream input)
