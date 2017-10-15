@@ -8,8 +8,6 @@ using HackMatch;
 using System.IO;
 using System.Text;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.InteropServices;
 
 namespace HackMatchServer
 {
@@ -30,7 +28,7 @@ namespace HackMatchServer
 				Console.Out.WriteLine("Client accepted, starting job in background...");
 				Thread job = new Thread(() => HandleClient(client));
 				job.Start();
-			} while (true);	//	No condition to stop.
+			} while (true); //	No condition to stop.
 		}
 
 		static void HandleClient(TcpClient client)
@@ -86,28 +84,12 @@ namespace HackMatchServer
 		}
 
 		//	TODO: Sanitize input
-		/*
-		private static byte[] ReadBlock(ref NetworkStream input)
-		{
-			byte[] rawLen = new byte[4];
-			input.Read(rawLen, 0, 4);
-			int dataLen = BitConverter.ToInt32(rawLen, 0);
-			byte[] block = new byte[dataLen];
-			input.Read(block, 0, dataLen);
-			return block;
-		}
-		
-		private static void WriteBlock<T>(ref NetworkStream output, ref T value)
-		{
-			byte[] data = value.
-			byte[] rawLen = BitConverter.GetBytes((Int32)Marshal.SizeOf(typeof(T));
 
-		}
-		*/
+
 		static void CreateProfile(ref NetworkStream input)
 		{
-			BinaryFormatter form = new BinaryFormatter();
-			User profile = (User)form.Deserialize(input);
+			DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
+			User profile = (User)json.ReadObject(input);
 			Console.Out.WriteLine(profile.ToString());
 			if (users.ContainsKey(profile.Username))
 			{
@@ -125,8 +107,8 @@ namespace HackMatchServer
 
 		static void EditProfile(ref NetworkStream input)
 		{
-			BinaryFormatter form = new BinaryFormatter();
-			User profile = (User)form.Deserialize(input);
+			DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
+			User profile = (User)json.ReadObject(input);
 			if (users.ContainsKey(profile.Username))
 			{
 				users[profile.Username] = profile;
@@ -143,12 +125,13 @@ namespace HackMatchServer
 
 		static void LoadProfile(ref NetworkStream input)
 		{
-			BinaryFormatter form = new BinaryFormatter();
-			string username = (string)form.Deserialize(input);
+			DataContractJsonSerializer str = new DataContractJsonSerializer(typeof(string));
+			string username = (string)str.ReadObject(input);
 			if (users.ContainsKey(username))
 			{
 				input.WriteByte(0x01);
-				form.Serialize(input, users[username]);
+				DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
+				json.WriteObject(input, users[username]);
 				Console.Out.WriteLine("Profile was loaded.");
 			}
 			else
@@ -161,13 +144,14 @@ namespace HackMatchServer
 		//	TODO: Ensure usernames cannot contain null characters
 		static void CalculateScore(ref NetworkStream input)
 		{
-			BinaryFormatter form = new BinaryFormatter();
-			string user1 = (string)form.Deserialize(input);
-			string user2 = (string)form.Deserialize(input);
+			DataContractJsonSerializer str = new DataContractJsonSerializer(typeof(string));
+			string user1 = (string)str.ReadObject(input);
+			string user2 = (string)str.ReadObject(input);
 			if (users.ContainsKey(user1) && users.ContainsKey(user2))
 			{
 				input.WriteByte(0x01);  //	Success
-				form.Serialize(input, (Int32)10);  //Return score of 10
+				DataContractJsonSerializer num = new DataContractJsonSerializer(typeof(Int32));
+				num.WriteObject(input, (Int32)10);  //Return score of 10
 				Console.Out.WriteLine("Score was calculated.");
 			}
 			else
@@ -180,9 +164,9 @@ namespace HackMatchServer
 
 		static void GetUsernames(ref NetworkStream input)
 		{
-			BinaryFormatter form = new BinaryFormatter();
+			DataContractJsonSerializer keyser = new DataContractJsonSerializer(users.Keys.GetType());
 			input.WriteByte(0x01);
-			form.Serialize(input, users.Keys);
+			keyser.WriteObject(input, users.Keys);
 			Console.Out.WriteLine("Usernames were returned.");
 		}
 
@@ -194,9 +178,9 @@ namespace HackMatchServer
 
 		static void UpdateUsers()
 		{
-			BinaryFormatter form = new BinaryFormatter();
+			DataContractJsonSerializer dbser = new DataContractJsonSerializer(users.GetType());
 			FileStream dbout = new FileStream("users.json", FileMode.OpenOrCreate);
-			form.Serialize(dbout, users);
+			dbser.WriteObject(dbout, users);
 			dbout.Close();
 			Console.Out.WriteLine("Users updated.");
 		}
@@ -205,9 +189,9 @@ namespace HackMatchServer
 		{
 			try
 			{
-				BinaryFormatter form = new BinaryFormatter();
+				DataContractJsonSerializer dbser = new DataContractJsonSerializer(users.GetType());
 				FileStream dbout = new FileStream("users.json", FileMode.Open);
-				users = (Dictionary<string, User>)form.Deserialize(dbout);
+				users = (Dictionary<string, User>)dbser.ReadObject(dbout);
 				dbout.Close();
 				Console.Out.WriteLine("Users loaded.");
 			}

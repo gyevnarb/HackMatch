@@ -3,7 +3,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Runtime.Serialization.Json;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace HackMatch
 {
@@ -34,8 +33,8 @@ namespace HackMatch
 			TcpClient connection = new TcpClient(Server, Port);
 			NetworkStream create = connection.GetStream();
 			create.WriteByte(0x01);
-			BinaryFormatter form = new BinaryFormatter();
-			form.Serialize(create, userdata);
+			DataContractJsonSerializer json = new DataContractJsonSerializer(userdata.GetType());
+			json.WriteObject(create, userdata);
 			int flag = create.ReadByte();
 			create.Close();
 			connection.Close();
@@ -55,8 +54,8 @@ namespace HackMatch
 			//	Need serialization before writing this part.
 			NetworkStream edit = connection.GetStream();
 			edit.WriteByte(0x02);
-			BinaryFormatter form = new BinaryFormatter();
-			form.Serialize(edit, userdata);
+			DataContractJsonSerializer json = new DataContractJsonSerializer(userdata.GetType());
+			json.WriteObject(edit, userdata);
 			int flag = edit.ReadByte();
 			edit.Close();
 			connection.Close();
@@ -75,14 +74,15 @@ namespace HackMatch
 			TcpClient connection = new TcpClient(Server, Port);
 			NetworkStream load = connection.GetStream();
 			load.WriteByte(0x03);
-			BinaryFormatter form = new BinaryFormatter();
-			form.Serialize(load, userid);
+			DataContractJsonSerializer str = new DataContractJsonSerializer(typeof(string));
+			str.WriteObject(load, userid);
+			DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
 			int flag = load.ReadByte();
 			if (flag != 0x01)
 			{
 				throw new Exception("Operation failed.");
 			}
-			User profile = (User)form.Deserialize(load);
+			User profile = (User)json.ReadObject(load);
 			load.Close();
 			connection.Close();
 			return profile;
@@ -97,15 +97,16 @@ namespace HackMatch
 			TcpClient connection = new TcpClient(Server, Port);
 			NetworkStream score = connection.GetStream();
 			score.WriteByte(0x04);
-			BinaryFormatter form = new BinaryFormatter();
-			form.Serialize(score, userid1);
-			form.Serialize(score, userid2);
+			DataContractJsonSerializer usernames = new DataContractJsonSerializer(typeof(string));
+			usernames.WriteObject(score, userid1);
+			usernames.WriteObject(score, userid2);
 			int flag = score.ReadByte();
 			if (flag != 0x01)
 			{
 				throw new Exception("Operation failed.");
 			}
-			Int32 result = (Int32)form.Deserialize(score);
+			DataContractJsonSerializer scoring = new DataContractJsonSerializer(typeof(Int32));
+			Int32 result = (Int32)scoring.ReadObject(score);
 			score.Close();
 			connection.Close();
 			return result;
@@ -121,8 +122,8 @@ namespace HackMatch
 			{
 				throw new Exception("Operation failed.");
 			}
-			BinaryFormatter form = new BinaryFormatter();
-			Dictionary<string, User>.KeyCollection usernames = (Dictionary<string, User>.KeyCollection)form.Deserialize(names);
+			DataContractJsonSerializer keyser = new DataContractJsonSerializer(typeof(Dictionary<string, User>.KeyCollection));
+			Dictionary<string, User>.KeyCollection usernames = (Dictionary<string, User>.KeyCollection)keyser.ReadObject(names);
 			names.Close();
 			connection.Close();
 			return usernames;
