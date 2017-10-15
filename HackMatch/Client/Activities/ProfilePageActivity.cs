@@ -64,6 +64,7 @@ namespace HackMatch
                 Log.Error(Constants.LOG_TAG, ex.Message);
             }
 
+            //Read data and set TextViews
             TextView fname = FindViewById<TextView>(Resource.Id.fnameTextView);
             fname.Text = u.FirstNames;
             TextView lname = FindViewById<TextView>(Resource.Id.lnameTextView);
@@ -75,7 +76,7 @@ namespace HackMatch
             TextView techs = FindViewById<TextView>(Resource.Id.techTextView);
             techs.Text = Utils.DictionaryToString<string, ExperienceLevel>(u.Technologies);
             TextView natLangs = FindViewById<TextView>(Resource.Id.natLangTextView);
-            natLangs.Text = u.SpokenLanguages.Aggregate((str, s) => str += $"• {s}\n");
+            natLangs.Text = u.SpokenLanguages.Aggregate((str, s) => str += $", {s}");
         }
     }
 }

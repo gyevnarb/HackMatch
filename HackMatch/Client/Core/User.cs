@@ -2,11 +2,10 @@
 using Android.Graphics;
 using System.Runtime.Serialization;
 using System.IO;
-using Android.Graphics;
 
 namespace HackMatch
 {
-	[DataContract]
+    [DataContract]
     public class User
     {
 		///	<summary>
