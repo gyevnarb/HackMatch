@@ -46,16 +46,14 @@ namespace HackMatch
         public List<string> SpokenLanguages { get; set; }
 
         /// <summary>
-        /// Get the currently set profile picture of the user
-        /// <para>TODO: Find out the proper type of this property</para>
-        /// </summary>
-		[DataMember]
-        public Bitmap ProfilePicture { get { return BitmapFactory.DecodeStream(ProfileStream); } } 
-
-        /// <summary>
         /// Property that stores bitmap stream of ProfilePicture
         /// </summary>
         public Stream ProfilePictureStream { get; set; }
 
+        /// <summary>
+        /// Get the currently set profile picture of the user
+        /// <para>TODO: Find out the proper type of this property</para>
+        /// </summary>
+        public Bitmap GetProfilePicture() { return BitmapFactory.DecodeStream(ProfilePictureStream); } 
     }
 }

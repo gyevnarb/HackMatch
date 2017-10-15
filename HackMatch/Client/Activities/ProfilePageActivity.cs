@@ -53,7 +53,7 @@ namespace HackMatch
                 { "Tensorflow", ExperienceLevel.Practiced}
             };
             u.Bio = "Hi! I am 20 year Hungarian coder, who has a great passion for machine learning and sustainable development. I also like to play the piano and learn new languages.";
-            u.ProfileStream = Resources.OpenRawResource(Resource.Drawable.me);
+            u.ProfilePictureStream = Resources.OpenRawResource(Resource.Drawable.me);
             try
             {
                 IServerCommunicator com = new ServerConnection(Constants.SERVER, Constants.PORT);
