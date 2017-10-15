@@ -46,27 +46,27 @@ namespace HackMatchServer
 						break;
 					case 0x02:
 						input.WriteByte(0x01);
-						Console.Out.WriteLine("<EditProfile>");
+						Console.Out.WriteLine("Editing profile...");
 						EditProfile(ref input);
 						break;
 					case 0x03:
 						input.WriteByte(0x01);
-						Console.Out.WriteLine("<LoadProfile>");
+						Console.Out.WriteLine("Loading profile...");
 						LoadProfile(ref input);
 						break;
 					case 0x04:
 						Int32 result = 99;
 						input.Write(BitConverter.GetBytes(result), 0, sizeof(Int32));
-						Console.Out.WriteLine("<CalculateScore>");
+						Console.Out.WriteLine("Calculating score...");
 						CalculateScore(ref input);
 						break;
 					case 0x05:
-						Console.Out.WriteLine("<GetUsernames>");
+						Console.Out.WriteLine("Getting usernames...");
 						GetUsernames(ref input);
 						break;
 					default:
 						input.WriteByte(0x00);
-						Console.Out.WriteLine("<Whoops>");
+						Console.Out.WriteLine("Unexpected failure!");
 						HandleInvalidInput(ref input);
 						break;
 				}
@@ -179,6 +179,7 @@ namespace HackMatchServer
 			FileStream dbout = new FileStream("users.json", FileMode.OpenOrCreate);
 			dbser.WriteObject(dbout, users);
 			dbout.Close();
+			Console.Out.WriteLine("Users updated.");
 		}
 
 		static void LoadUsers()
@@ -189,6 +190,7 @@ namespace HackMatchServer
 				FileStream dbout = new FileStream("users.json", FileMode.Open);
 				users = (Dictionary<string, User>)dbser.ReadObject(dbout);
 				dbout.Close();
+				Console.Out.WriteLine("Users loaded.");
 			}
 			catch (Exception ex)
 			{
