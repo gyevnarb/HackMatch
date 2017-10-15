@@ -34,8 +34,13 @@ namespace HackMatch
 			create.WriteByte(0x01);
 			DataContractJsonSerializer json = new DataContractJsonSerializer(userdata.GetType());
 			json.WriteObject(create, userdata);
+			int flag = create.ReadByte();
 			create.Close();
 			connection.Close();
+			if (flag != 0x01)
+			{
+				throw new Exception("Operation failed.");
+			}
 		}
 
 		/// <summary>
@@ -50,8 +55,13 @@ namespace HackMatch
 			edit.WriteByte(0x02);
 			DataContractJsonSerializer json = new DataContractJsonSerializer(userdata.GetType());
 			json.WriteObject(edit, userdata);
+			int flag = edit.ReadByte();
 			edit.Close();
 			connection.Close();
+			if (flag != 0x01)
+			{
+				throw new Exception("Operation failed.");
+			}
 		}
 
 		/// <summary>
@@ -64,9 +74,15 @@ namespace HackMatch
 			NetworkStream load = connection.GetStream();
 			load.WriteByte(0x03);
 			DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
+			int flag = load.ReadByte();
+			if (flag != 0x01)
+			{
+				throw new Exception("Operation failed.");
+			}
+			User profile = (User)json.ReadObject(load);
 			load.Close();
 			connection.Close();
-			return (User)json.ReadObject(load);
+			return profile;
 		}
 
 		/// <summary>
@@ -76,15 +92,21 @@ namespace HackMatch
 		{
 			Console.Out.WriteLine("<CalculateScore>");
 			TcpClient connection = new TcpClient(Server, Port);
-			byte[] data = Encoding.UTF8.GetBytes(userid1 + ' ' + userid2);
 			NetworkStream score = connection.GetStream();
 			score.WriteByte(0x04);
-			score.Write(data, 0, data.Length);
-			byte[] result = new byte[4];
-			score.Read(result, 0, 4);
+			DataContractJsonSerializer usernames = new DataContractJsonSerializer(typeof(string));
+			usernames.WriteObject(score, userid1);
+			usernames.WriteObject(score, userid2);
+			int flag = score.ReadByte();
+			if (flag != 0x01)
+			{
+				throw new Exception("Operation failed.");
+			}
+			DataContractJsonSerializer scoring = new DataContractJsonSerializer(typeof(Int32));
+			Int32 result = (Int32)scoring.ReadObject(score);
 			score.Close();
 			connection.Close();
-			return BitConverter.ToInt32(data, 0);
+			return result;
 		}
 	}
 }
