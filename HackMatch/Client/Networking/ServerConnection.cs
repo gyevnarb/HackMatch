@@ -2,6 +2,7 @@
 using System.Net.Sockets;
 using System.Text;
 using System.Runtime.Serialization.Json;
+using System.Collections.Generic;
 
 namespace HackMatch
 {
@@ -109,6 +110,23 @@ namespace HackMatch
 			score.Close();
 			connection.Close();
 			return result;
+		}
+
+		Dictionary<string, User>.KeyCollection IServerCommunicator.GetUsernames()
+		{
+			TcpClient connection = new TcpClient(Server, Port);
+			NetworkStream names = connection.GetStream();
+			names.WriteByte(0x05);
+			int flag = names.ReadByte();
+			if (flag != 1)
+			{
+				throw new Exception("Operation failed.");
+			}
+			DataContractJsonSerializer keyser = new DataContractJsonSerializer(typeof(Dictionary<string, User>.KeyCollection));
+			Dictionary<string, User>.KeyCollection usernames = (Dictionary<string, User>.KeyCollection)keyser.ReadObject(names);
+			names.Close();
+			connection.Close();
+			return usernames;
 		}
 	}
 }
