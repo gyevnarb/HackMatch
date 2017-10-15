@@ -1,24 +1,31 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Net.Sockets;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Threading;
 using HackMatch;
-using System.IO;
-using System.Text;
 using System.Collections.Generic;
+using HackMatchServer.Database;
 
 namespace HackMatchServer
 {
 	class MainActivity
 	{
 
-		static Dictionary<string, User> users;
+		private static Dictionary<string, User> users;
+		private static DatabaseController<Dictionary<string, User>> database;
 
 		static void Main(string[] args)
 		{
-			LoadUsers();
+			database = new DatabaseController<Dictionary<string, User>>("users.json");
+			try
+			{
+				users = database.Load();
+			}
+			catch(Exception ex)
+			{
+				users = new Dictionary<string, User>();
+			}
 			TcpListener listener = TcpListener.Create(Constants.PORT);
 			listener.Start();
 			Console.Out.WriteLine("Listening for incoming connections...");
@@ -28,7 +35,7 @@ namespace HackMatchServer
 				Console.Out.WriteLine("Client accepted, starting job in background...");
 				Thread job = new Thread(() => HandleClient(client));
 				job.Start();
-			} while (true); //	No condition to stop.
+			} while (true);	//	No condition to stop.
 		}
 
 		static void HandleClient(TcpClient client)
@@ -100,7 +107,7 @@ namespace HackMatchServer
 			{
 				users[profile.Username] = profile;
 				input.WriteByte(0x01);
-				UpdateUsers();
+				database.Update(users);
 				Console.Out.WriteLine("Profile was created.");
 			}
 		}
@@ -113,7 +120,7 @@ namespace HackMatchServer
 			{
 				users[profile.Username] = profile;
 				input.WriteByte(0x01);
-				UpdateUsers();
+				database.Update(users);
 				Console.Out.WriteLine("Profile was edited.");
 			}
 			else
@@ -176,30 +183,6 @@ namespace HackMatchServer
 			input.WriteByte(0x00);
 		}
 
-		static void UpdateUsers()
-		{
-			DataContractJsonSerializer dbser = new DataContractJsonSerializer(users.GetType());
-			FileStream dbout = new FileStream("users.json", FileMode.OpenOrCreate);
-			dbser.WriteObject(dbout, users);
-			dbout.Close();
-			Console.Out.WriteLine("Users updated.");
-		}
 
-		static void LoadUsers()
-		{
-			try
-			{
-				DataContractJsonSerializer dbser = new DataContractJsonSerializer(users.GetType());
-				FileStream dbout = new FileStream("users.json", FileMode.Open);
-				users = (Dictionary<string, User>)dbser.ReadObject(dbout);
-				dbout.Close();
-				Console.Out.WriteLine("Users loaded.");
-			}
-			catch (Exception ex)
-			{
-				users = new Dictionary<string, User>();
-				Console.WriteLine("Failure loading users: " + ex.Data);
-			}
-		}
 	}
 }
