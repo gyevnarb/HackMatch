@@ -53,21 +53,21 @@ namespace HackMatch.Resources
                 MatchingPageActivity.hackathonId = 1;
                 StartActivity(intent);
             };
-            ImageButton img2 = FindViewById<ImageButton>(Resource.Id.imageButton1);
+            ImageButton img2 = FindViewById<ImageButton>(Resource.Id.imageButton2);
             img2.Click += (sender, e) =>
             {
                 var intent = new Intent(this, typeof(MatchingPageActivity));
                 MatchingPageActivity.hackathonId = 2;
                 StartActivity(intent);
             };
-            ImageButton img3 = FindViewById<ImageButton>(Resource.Id.imageButton1);
+            ImageButton img3 = FindViewById<ImageButton>(Resource.Id.imageButton3);
             img3.Click += (sender, e) =>
             {
                 var intent = new Intent(this, typeof(MatchingPageActivity));
                 MatchingPageActivity.hackathonId = 3;
                 StartActivity(intent);
             };
-            ImageButton img4 = FindViewById<ImageButton>(Resource.Id.imageButton1);
+            ImageButton img4 = FindViewById<ImageButton>(Resource.Id.imageButton4);
             contactsView.Click += (sender, e) =>
             {
                 var intent = new Intent(this, typeof(MatchingPageActivity));
