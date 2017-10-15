@@ -54,7 +54,7 @@ namespace HackMatch
         /// Get the currently set profile picture of the user
         /// <para>TODO: Find out the proper type of this property</para>
         /// </summary>
-        public Bitmap GetProfilePicture() { return (Bitmap)BitmapFactory.FromArray<byte>(ProfilePictureData); }
+        public Bitmap GetProfilePicture() { return BitmapFactory.FromArray<byte>(ProfilePictureData) as Bitmap; }
 
 		/// <summary>
 		/// Set the profile picture of the user
