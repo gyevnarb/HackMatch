@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Net.Sockets;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Threading;
 using HackMatch;
@@ -18,7 +19,7 @@ namespace HackMatchServer
 		static void Main(string[] args)
 		{
 			LoadUsers();
-			TcpListener listener = TcpListener.Create(6969);
+			TcpListener listener = TcpListener.Create(Constants.PORT);
 			listener.Start();
 			Console.Out.WriteLine("Listening for incoming connections...");
 			do
@@ -73,6 +74,7 @@ namespace HackMatchServer
 			}
 			catch (Exception ex)
 			{
+				Console.Out.WriteLine("Unexpected error: " + ex);
 				input.Flush();
 				HandleInvalidInput(ref input);
 			}
@@ -88,6 +90,7 @@ namespace HackMatchServer
 		{
 			DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(User));
 			User profile = (User)json.ReadObject(input);
+			Console.Out.WriteLine(profile.ToString());
 			if (users.ContainsKey(profile.Username))
 			{
 				input.WriteByte(0x00);
